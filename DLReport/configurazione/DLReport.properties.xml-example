@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    <comment>Fie di configurazione del progetto Deposito Legame - Report</comment>
+
+    <entry key="pathReport">/mnt/volume2/report</entry>
+    <entry key="pathListe">/Users/massi/Desktop/Lavoro/Sorgenti/Madeword/Magazzini Digitali 3.0/Tesi Dottorato/DLReport/configurazione/liste</entry>
+    
+</properties>

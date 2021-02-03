@@ -1,0 +1,55 @@
+<html>
+  <head>
+
+    <!-- Using jQuery with a CDN -->
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <!-- JS file -->
+    <script src="./EasyAutocomplete/jquery.easy-autocomplete.min.js"></script> 
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="./EasyAutocomplete/easy-autocomplete.min.css"> 
+
+    <!-- Additional CSS Themes file - not required-->
+    <link rel="stylesheet" href="./EasyAutocomplete/easy-autocomplete.themes.min.css"> 
+
+  </head>
+  <body>
+    <h1>Report risultati elaborazioni</h1>
+    <br>
+    <div class="ricerca">
+      Nome Istituto: <input id="nomeIstituto"/><br>
+      Sigla Istituto: <input id="sigla"/><br>
+    </div>
+    <script>
+      var optionsNome = {
+	url: "json/istituti.json",
+
+	getValue: "nome",
+
+	list: {
+		match: {
+			enabled: true
+		}
+	}
+      };
+
+      $("#nomeIstituto").easyAutocomplete(optionsNome);
+
+      var optionsSigla = {
+	url: "json/istituti.json",
+
+	getValue: "sigla",
+
+	list: {
+		match: {
+			enabled: true
+		}
+	}
+      };
+
+      $("#sigla").easyAutocomplete(optionsSigla);
+    </script>
+    <div class="risultato">
+    </div>
+  </body>
+</html>

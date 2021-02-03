@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>it.depositolegale.report</groupId>
+	<artifactId>DLReport</artifactId>
+	<version>1.0.15</version>
+	<packaging>war</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.randalf.configuration</groupId>
+			<artifactId>RandalfConfiguration</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>DLReport##${project.version}</finalName>
+		<plugins>
+			<plugin>
+
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>default</phase>
+						<!-- 
+						<configuration>
+							<tasks>
+								<delete
+									file="${project.build.outputDirectory}/hibernate.cfg.xml" />
+								<delete file="${project.build.outputDirectory}/log4j.xml" />
+
+								<copy file="src/profiles/default/hibernate.cfg.xml"
+									tofile="${project.build.outputDirectory}/hibernate.cfg.xml" />
+
+								<copy file="src/profiles/default/log4j.xml"
+									tofile="${project.build.outputDirectory}/log4j.xml" />
+							</tasks>
+						</configuration>
+						 -->
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<!-- 
+				<excludes>
+					<exclude>**/hibernate.cfg.prod.xml</exclude>
+					<exclude>**/hibernate.cfg.test.xml</exclude>
+					<exclude>**/hibernate.cfg.svil.xml</exclude>
+					<exclude>**/log4j.prod.xml</exclude>
+					<exclude>**/log4j.test.xml</exclude>
+					<exclude>**/log4j.svil.xml</exclude>
+				</excludes>
+				 -->
+			</resource>
+		</resources>
+	</build>
+
+</project>
