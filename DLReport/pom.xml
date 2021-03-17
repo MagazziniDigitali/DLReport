@@ -28,6 +28,12 @@
 			<version>2.8.6</version>
 		</dependency>
 	</dependencies>
+  <repositories>
+    <repository>
+      <id>randalf.mx-release</id>
+      <url>http://maven.bncf.firenze.sbn.it/artifactory/libs-release</url>
+    </repository>
+  </repositories>
 
 	<build>
 		<finalName>DLReport##${project.version}</finalName>
