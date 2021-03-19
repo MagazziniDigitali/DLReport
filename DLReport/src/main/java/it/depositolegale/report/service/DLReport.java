@@ -265,16 +265,18 @@ public class DLReport extends HttpServlet implements Servlet {
 						} else {
 							esito = report.getEsito();
 						}
-						if (st2[1].equalsIgnoreCase("txt")) {
+						int last=st2.length-1; // 19/03/2021 Argentino
+						
+						if (st2[last].equalsIgnoreCase("txt")) {
 							esito.setTesto("report/"+sigla+"/"+f.getName());
 						} 
-						if (st2[1].equalsIgnoreCase("pdf")) {
+						if (st2[last].equalsIgnoreCase("pdf")) {
 							esito.setPdf("report/"+sigla+"/"+f.getName());
 						} 
-						if (st2[1].equalsIgnoreCase("csv")) {
+						if (st2[last].equalsIgnoreCase("csv")) {
 							esito.setCsv("report/"+sigla+"/"+f.getName());
 						} 
-						if (st2[1].equalsIgnoreCase("xls")) {
+						if (st2[last].equalsIgnoreCase("xls")) {
 							esito.setXls("report/"+sigla+"/"+f.getName());
 						} 
 						report.setEsito(esito);
