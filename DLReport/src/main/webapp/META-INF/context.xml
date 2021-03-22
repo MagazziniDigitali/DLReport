@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/TecaSearch" crossContext="true" debug="0" reloadable="true">
+    <Parameter name="nomeCatalogo" value="DLReport|file:////Users/massi/Desktop/Lavoro/Sorgenti/Madeword/Magazzini Digitali 3.0/Tesi Dottorato/DLReport/configurazione/Svil"/>
+</Context>
