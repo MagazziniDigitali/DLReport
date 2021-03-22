@@ -232,11 +232,10 @@ public class DLReport extends HttpServlet implements Servlet {
 					reports = new Hashtable<String, Report>();
 					for (File f: fl) {
 						st = f.getName().split("_");
-						
 						key = "";
 						archived=false;
-						
 						for (int x=0; x<st.length; x++) {
+key+=st[x]; // Arge 22/03/2021
 							if (x==st.length-1) {
 								st2 = st[x].split("\\.");
 								if (x!= 4) {
@@ -245,12 +244,12 @@ public class DLReport extends HttpServlet implements Servlet {
 										archived = true;
 									}
 								}
-							} else if (x!= 4) {
-								key+=st[x];
-							}
+							} 
+//							else if (x!= 4) 
+//							{
+//								key+=st[x];
+//							}
 						}
-						
-						
 						if (reports.containsKey(key)) {
 							report = reports.get(key);
 						} else {
@@ -259,14 +258,12 @@ public class DLReport extends HttpServlet implements Servlet {
 						report.setData(st[2]+"/"+st[1]+"/"+st[0]);
 						report.setTipo(st[3]);
 						report.setArchived(archived);
-
 						if (report.getEsito()==null) {
 							esito = new Esito();
 						} else {
 							esito = report.getEsito();
 						}
 						int last=st2.length-1; // 19/03/2021 Argentino
-						
 						if (st2[last].equalsIgnoreCase("txt")) {
 							esito.setTesto("report/"+sigla+"/"+f.getName());
 						} 
@@ -279,6 +276,7 @@ public class DLReport extends HttpServlet implements Servlet {
 						if (st2[last].equalsIgnoreCase("xls")) {
 							esito.setXls("report/"+sigla+"/"+f.getName());
 						} 
+
 						report.setEsito(esito);
 						reports.put(key, report);
 					}
