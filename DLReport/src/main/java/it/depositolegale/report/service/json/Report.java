@@ -7,8 +7,19 @@ public class Report {
 	private String tipo;
 	
 	private Esito esito;
-
+	
 	private boolean archived = false;
+
+	private String rivista;
+
+	
+	public String getRivista() {
+		return rivista;
+	}
+
+	public void setRivista(String rivista) {
+		this.rivista = rivista;
+	}
 
 	public Report() {
 	}

@@ -205,11 +205,16 @@ public class DLReport extends HttpServlet implements Servlet {
 		String key = null;
 		boolean archived = false;
 		
+		String[] sito_rivista = sigla.split("\\.");
+		
+		
 		try {
 			listaReport = new ListaReport();
 			pathReport = Configuration.getValue("pathReport");
 			if (pathReport != null) {
-				folder = new File(pathReport+File.separator+sigla);
+//				folder = new File(pathReport+File.separator+sigla);
+				folder = new File(pathReport+File.separator+sito_rivista[0]);
+					
 				if (folder.exists()) {
 					fl = folder.listFiles(new FileFilter() {
 						
@@ -218,9 +223,10 @@ public class DLReport extends HttpServlet implements Servlet {
 							boolean result = false;
 							
 							if (!pathname.getName().startsWith(".") &&
-									(pathname.getName().toLowerCase().endsWith(".txt") ||
-											pathname.getName().toLowerCase().endsWith(".pdf") ||
-											pathname.getName().toLowerCase().endsWith(".csv") ||
+									(
+//											pathname.getName().toLowerCase().endsWith(".txt") ||
+//											pathname.getName().toLowerCase().endsWith(".pdf") ||
+//											pathname.getName().toLowerCase().endsWith(".csv") ||
 											pathname.getName().toLowerCase().endsWith(".xls"))) {
 								result = true;
 							}
@@ -236,15 +242,17 @@ public class DLReport extends HttpServlet implements Servlet {
 						archived=false;
 						for (int x=0; x<st.length; x++) {
 key+=st[x]; // Arge 22/03/2021
+
 							if (x==st.length-1) {
 								st2 = st[x].split("\\.");
-								if (x!= 4) {
+								if (x != 4) {
 									key+=st2[0];
-									if (st2[0].trim().equalsIgnoreCase("archived")) {
-										archived = true;
-									}
+//									if (st2[0].trim().equalsIgnoreCase("archived")) {
+//										archived = true;
+//									}
 								}
-							} 
+							}
+							
 //							else if (x!= 4) 
 //							{
 //								key+=st[x];
@@ -264,20 +272,35 @@ key+=st[x]; // Arge 22/03/2021
 							esito = report.getEsito();
 						}
 						int last=st2.length-1; // 19/03/2021 Argentino
-						if (st2[last].equalsIgnoreCase("txt")) {
-							esito.setTesto("report/"+sigla+"/"+f.getName());
-						} 
-						if (st2[last].equalsIgnoreCase("pdf")) {
-							esito.setPdf("report/"+sigla+"/"+f.getName());
-						} 
-						if (st2[last].equalsIgnoreCase("csv")) {
-							esito.setCsv("report/"+sigla+"/"+f.getName());
-						} 
+//						if (st2[last].equalsIgnoreCase("txt")) {
+//							esito.setTesto("report/"+sigla+"/"+f.getName());
+//						} 
+//						if (st2[last].equalsIgnoreCase("pdf")) {
+//							esito.setPdf("report/"+sigla+"/"+f.getName());
+//						} 
+//						if (st2[last].equalsIgnoreCase("csv")) {
+//							esito.setCsv("report/"+sigla+"/"+f.getName());
+//						} 
 						if (st2[last].equalsIgnoreCase("xls")) {
-							esito.setXls("report/"+sigla+"/"+f.getName());
+							String fname=f.getName();
+							if (fname.endsWith(sito_rivista[sito_rivista.length-1] + ".xls"))
+								esito.setXls("report/"+sigla+"/"+f.getName());
+							else
+								continue;
 						} 
-
 						report.setEsito(esito);
+						if (st[3].equals("ej"))
+							{
+							Istituto istituto = findIstituto( st2[0]+"."+st2[1]);
+							if( istituto != null) 
+								report.setRivista(istituto.getNome());
+							else
+								report.setRivista(st2[last-1]);
+							
+							}
+						else
+							report.setRivista("");
+						
 						reports.put(key, report);
 					}
 					
@@ -310,4 +333,15 @@ key+=st[x]; // Arge 22/03/2021
 		istituto.setSigla(sigla);
 		return istituto;
 	}
+
+private Istituto findIstituto( String sigla) 
+	{
+    for (Istituto istituto : listaIstituti) {
+	        if (istituto.getSigla().equals(sigla)) {
+	            return istituto;
+	        }
+	    }
+	    return null;
+	}
+
 }
