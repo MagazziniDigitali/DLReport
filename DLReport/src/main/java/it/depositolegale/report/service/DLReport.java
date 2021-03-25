@@ -284,7 +284,12 @@ key+=st[x]; // Arge 22/03/2021
 						if (st2[last].equalsIgnoreCase("xls")) {
 							String fname=f.getName();
 							if (fname.endsWith(sito_rivista[sito_rivista.length-1] + ".xls"))
-								esito.setXls("report/"+sigla+"/"+f.getName());
+							{
+								if (st[3].equals("ej"))
+									esito.setXls("report/"+sito_rivista[0]+"/"+f.getName());
+								else
+									esito.setXls("report/"+sigla+"/"+f.getName());
+							}
 							else
 								continue;
 						} 
